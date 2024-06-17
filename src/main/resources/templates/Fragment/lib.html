@@ -8,16 +8,28 @@
 <body>
 <nav th:fragment="nav">
   <ul class="navbar">
-    <li ><a th:href="@{/home}">Home</a></li>
+    <li><a th:href="@{/home}">Home</a></li>
     <li><a th:href="@{/about}">About</a></li>
     <li><a th:href="@{/contact}">Contact</a></li>
     <li sec:authorize="isAnonymous()">
       <a th:href="@{/login}">Login</a>
     </li>
     <li sec:authorize="isAuthenticated()">
-      <p th:text="'em chao anh '+${#authentication.principal.getDisplayName()}"></p>
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span th:text="${#authentication.principal.username}"></span>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" th:href="@{/change-password}">Đổi mật khẩu</a>
+          <a class="dropdown-item" th:href="@{/edit}">Xem thông tin cá nhân</a>
+          <a class="dropdown-item" th:href="@{/logout}">Đăng xuất</a>
+        </div>
+      </div>
     </li>
   </ul>
 </nav>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>

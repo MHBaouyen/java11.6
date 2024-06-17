@@ -38,7 +38,19 @@ public class CustomUserDetail implements UserDetails{
         return user.getUsername();
     }
 
-    public String getDisplayName(){
-        return "HEHEHEHEHEHEHE";
+    public String getDisplayName() {
+        // Return HTML string with dropdown options
+        StringBuilder dropdownHtml = new StringBuilder();
+        dropdownHtml.append("<div class='dropdown'>")
+                .append("<button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>")
+                .append(user.getUsername())
+                .append("</button>")
+                .append("<div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>")
+                .append("<a class='dropdown-item' href='/change-password'>Đổi mật khẩu</a>")
+                .append("<a class='dropdown-item' href='/profile'>Xem thông tin cá nhân</a>")
+                .append("<a class='dropdown-item' href='/logout'>Đăng xuất</a>")
+                .append("</div>")
+                .append("</div>");
+        return dropdownHtml.toString();
     }
 }
